@@ -4,9 +4,10 @@ import { useState } from "react";
 interface ListGroupProps {
   places: string[];
   heading: string;
+  onSelectItem: (place: string) => void;
 }
 
-function ListGroup({ places, heading }: ListGroupProps) {
+function ListGroup({ places, heading, onSelectItem }: ListGroupProps) {
   //Rendering List using mapping
   //   let places = ["Laguna", "Batangas", "Rizal", "Cavite"];
   //   const handleClick = (event: MouseEvent) => console.log(event.target);
@@ -37,7 +38,10 @@ function ListGroup({ places, heading }: ListGroupProps) {
             // onClick={(event) => console.log(place, index, event)}
             // onClick={handleClick}
             // onClick={handleClick}
-            onClick={() => setSelectedIndex(index)}
+            onClick={() => {
+              setSelectedIndex(index);
+              onSelectItem(place);
+            }}
             //className="list-group-item"
             className={
               selectedIndex === index
